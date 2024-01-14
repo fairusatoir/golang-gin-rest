@@ -1,0 +1,3 @@
+### GET ALL PRODUCT
+GET http://localhost:8080/api/product/all
+Accept: application/json
