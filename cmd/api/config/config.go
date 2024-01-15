@@ -21,9 +21,11 @@ type Config struct {
 func Load() (*Config, error) {
 	vp := viper.New()
 
+	vp.SetConfigType("env")
+	vp.SetConfigName("")
+
 	vp.AddConfigPath("./config")
 	vp.AddConfigPath(".")
-	vp.SetConfigType("env")
 
 	err := vp.ReadInConfig()
 	if err != nil {

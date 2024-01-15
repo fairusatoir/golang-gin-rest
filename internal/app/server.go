@@ -42,6 +42,8 @@ func setupApiServer(cfg *config.Config) *gin.Engine {
 	if cfg.Debug {
 		mode = gin.DebugMode
 	}
+
+	gin.ForceConsoleColor()
 	gin.SetMode(mode)
 
 	router := gin.New()
