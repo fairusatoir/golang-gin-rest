@@ -42,3 +42,24 @@ func (r *ProductRepo) All(ctx context.Context, tx *sql.Tx) *utils.Result {
 
 	return utils.NewResult(ts, http.StatusOK, nil)
 }
+
+func (r *ProductRepo) Find(ctx context.Context, tx *sql.Tx, id uint) *utils.Result {
+	rs, err := tx.QueryContext(ctx, r.Q_PRODUCT_ALL, id)
+	if err != nil {
+		return utils.NewResult(nil, http.StatusInternalServerError, errors.Wrap(err, constants.ErrExecQuery.Error()))
+	}
+	defer rs.Close()
+
+	var t models.Product
+	if rs.Next() {
+		if err := rs.Scan(&t.Id, &t.Name, &t.Price); err != nil {
+			return utils.NewResult(nil, http.StatusInternalServerError, errors.Wrap(err, constants.ErrScanQuery.Error()))
+		}
+	}
+
+	if err = rs.Err(); err != nil {
+		return utils.NewResult(nil, http.StatusInternalServerError, errors.Wrap(err, constants.ErrResultQuery.Error()))
+	}
+
+	return utils.NewResult(t, http.StatusOK, nil)
+}

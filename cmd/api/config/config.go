@@ -9,13 +9,14 @@ import (
 )
 
 type Config struct {
-	Name          string `mapstructure:"app_name"`
-	Version       string `mapstructure:"app_version"`
-	Environment   string `mapstructure:"APP_ENVIRONMENT"`
-	Debug         bool   `mapstructure:"app_debug"`
-	DM_Driver     string `mapstructure:"ds_datamaster_driver"`
-	DM_URL        string `mapstructure:"ds_datamaster_url"`
-	Q_PRODUCT_ALL string `mapstructure:"Q_PRODUCT_ALL"`
+	Name           string `mapstructure:"app_name"`
+	Version        string `mapstructure:"app_version"`
+	Environment    string `mapstructure:"APP_ENVIRONMENT"`
+	Debug          bool   `mapstructure:"app_debug"`
+	DM_Driver      string `mapstructure:"ds_datamaster_driver"`
+	DM_URL         string `mapstructure:"ds_datamaster_url"`
+	Q_PRODUCT_ALL  string `mapstructure:"Q_PRODUCT_ALL"`
+	Q_PRODUCT_FIND string `mapstructure:"Q_PRODUCT_FIND"`
 }
 
 func Load() (*Config, error) {
